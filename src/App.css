@@ -1,0 +1,50 @@
+.input-field, .add-stock-btn {
+  width: 200px; 
+  height: 40px; 
+  padding: 10px; 
+  font-size: 16px; 
+  border: 1px solid #ccc; 
+  box-sizing: border-box;
+}
+
+.add-stock-btn {
+  background-color: #2274d2;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.input-field {
+  background-color: white;
+  color: black;
+}
+
+body {
+  background-color: #f0f0f0; /* Light grey */
+}
+
+.stock-form-fields {
+  display: flex; 
+  gap: 10px; 
+  align-items: center; 
+}
+
+.stock-title {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+}
+
+.stock-title span {
+  margin-right: 10px; 
+}
+
+.stock-list-title {
+  display: flex;
+  align-items: center;
+  font-size: 22px;
+}
+
+.stock-list-title span {
+  margin-right: 8px; /* Space between icon and text */
+}
