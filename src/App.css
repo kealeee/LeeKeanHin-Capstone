@@ -48,3 +48,24 @@ body {
 .stock-list-title span {
   margin-right: 8px; /* Space between icon and text */
 }
+
+.stock-list-title {
+  font-size: 1.5em;
+  color: #333;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  padding: 8px;
+  font-size: 1em;
+  color: #333;
+}
+
+.profit {
+  color: green;
+}
+.loss {
+  color: red;
+}
