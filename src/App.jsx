@@ -132,6 +132,16 @@ function StockFormSection({ stockList, setStockList }) {
       alert('Please fill all fields');
       return;
     }
+    
+    // Check if the symbol already exists in stockList (case-insensitive)
+    const symbolExists = stockList.some(
+      (stock) => stock.symbol.toUpperCase() === symbol.toUpperCase()
+    );
+    // Alert and prevent adding if symbol exists
+    if (symbolExists) {
+      alert('This stock symbol is already added. Please choose a different symbol.');
+      return;
+    }
     setTriggerFetch(true); // Trigger API fetch
   }
 
