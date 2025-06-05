@@ -70,3 +70,8 @@ li {
   color: red;
 }
 
+.loading-text {
+  color: #007bff;
+  font-size: 1em;
+  margin-top: 10px;
+}

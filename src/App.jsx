@@ -95,10 +95,12 @@ function StockFormSection({ stockList, setStockList }) {
   const [quantity, setQuantity] = useState("");
   const [purchasePrice, setPurchasePrice] = useState("");
   const [triggerFetch, setTriggerFetch] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (!triggerFetch || !symbol) return;
 
+    setIsLoading(true);
     fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=HA3IS3PZYRGXGVVG`)
       .then((response) => response.json())
       .then((data) => {
@@ -121,6 +123,7 @@ function StockFormSection({ stockList, setStockList }) {
       })
       .finally(() => {
         setTriggerFetch(false);
+        setIsLoading(false);
       });
   }, [triggerFetch, symbol, quantity, purchasePrice, stockList]);
 
@@ -141,6 +144,7 @@ function StockFormSection({ stockList, setStockList }) {
         <StockBuyPrice purchasePrice={purchasePrice} setPurchasePrice={setPurchasePrice} />
         <AddStockButton onAddStock={addStock} />
       </div>
+      {isLoading && <p className="loading-text">Loading...</p>}
     </div>
   );
 }
