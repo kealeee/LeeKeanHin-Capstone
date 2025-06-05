@@ -63,11 +63,11 @@ function StockList({ stockList }) {
         <ul>
           {stockList.map((stock, index) => (
             <li key={index}>
-              Symbol: {stock.symbol}<br />
+              <span style={{ fontWeight: 'bold' }}>Symbol: {stock.symbol}</span><br />
               Quantity: {stock.quantity}<br />
               Purchase Price: ${stock.purchasePrice}<br />
               Current Price: ${stock.currentPrice.toFixed(2)}<br />
-              <span style={{ color: stock.profitLoss >= 0 ? 'green' : 'red' }}>
+              <span style={{ color: stock.profitLoss >= 0 ? 'green' : 'red', fontWeight: 'bold' }}>
                 Profit/Loss: {stock.profitLoss >= 0 ? '+' : '-'}${Math.abs(stock.profitLoss).toFixed(2)}
               </span>
             </li>
@@ -99,7 +99,7 @@ function StockFormSection({ stockList, setStockList }) {
   useEffect(() => {
     if (!triggerFetch || !symbol) return;
 
-    fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=demo`)
+    fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=HA3IS3PZYRGXGVVG`)
       .then((response) => response.json())
       .then((data) => {
         if (!data['Global Quote'] || !data['Global Quote']['05. price']) {
