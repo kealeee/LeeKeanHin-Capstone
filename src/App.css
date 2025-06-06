@@ -75,3 +75,8 @@ li {
   font-size: 1em;
   margin-top: 10px;
 }
+
+.stock-title i,
+.add-stock-btn i {
+  margin-right: 8px;
+}
