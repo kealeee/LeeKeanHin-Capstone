@@ -1,12 +1,13 @@
 
 import { useEffect, useState } from 'react';
 import './App.css'
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 
 function StockFormTitle() {
   return (
     <h1 className="stock-title">
-      Finance Dashboard 📈 
+      <i className="fas fa-chart-line"></i> Finance Dashboard
     </h1>
   );
 }
@@ -50,7 +51,8 @@ function StockBuyPrice({purchasePrice, setPurchasePrice}){
 }
 
 function AddStockButton({onAddStock}){
-  return <button className='add-stock-btn' onClick={onAddStock}>Add Stock</button>;
+  return <button className='add-stock-btn' onClick={onAddStock}>
+    <i className="fas fa-plus"></i>Add Stock</button>;
 }
 
 function StockList({ stockList }) {
