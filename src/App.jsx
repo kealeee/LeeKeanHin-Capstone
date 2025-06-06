@@ -50,11 +50,8 @@ function StockBuyPrice({purchasePrice, setPurchasePrice}){
 }
 
 function AddStockButton({onAddStock}){
-  return (
-    <button className="add-stock-btn" onClick={onAddStock}>
-      <i className="fas fa-plus"></i> Add Stock
-    </button>
-  );
+  return <button className='add-stock-btn' onClick={onAddStock}>
+    <i className="fas fa-plus"></i>Add Stock</button>;
 }
 
 function StockList({ stockList }) {
