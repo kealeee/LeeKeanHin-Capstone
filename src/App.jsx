@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback} from 'react';
 import './App.css'
 
 
@@ -50,6 +50,7 @@ function StockBuyPrice({purchasePrice, setPurchasePrice}){
 }
 
 function AddStockButton({onAddStock}){
+  console.log('AddStockButton rendered');
   return <button className='add-stock-btn' onClick={onAddStock}>Add Stock</button>;
 }
 
@@ -127,7 +128,19 @@ function StockFormSection({ stockList, setStockList }) {
       });
   }, [triggerFetch, symbol, quantity, purchasePrice, stockList]);
 
-  function addStock() {
+  const memoizedSetSymbol = useCallback((value) => {
+    setSymbol(value);
+  }, []);
+
+  const memoizedSetQuantity = useCallback((value) => {
+    setQuantity(value);
+  }, []);
+
+  const memoizedSetPurchasePrice = useCallback((value) => {
+    setPurchasePrice(value);
+  }, []);
+
+  const addStock = useCallback(() => {
     if (!symbol || !quantity || !purchasePrice) {
       alert('Please fill all fields');
       return;
@@ -143,16 +156,16 @@ function StockFormSection({ stockList, setStockList }) {
       return;
     }
     setTriggerFetch(true); // Trigger API fetch
-  }
+  }, [symbol, quantity, purchasePrice, stockList]);
 
   return (
     <div className="stock-form-section">
       <StockFormTitle />
       <div className="stock-form-fields">
-        <StockCode symbol={symbol} setSymbol={setSymbol} />
-        <StockQuantity quantity={quantity} setQuantity={setQuantity} />
-        <StockBuyPrice purchasePrice={purchasePrice} setPurchasePrice={setPurchasePrice} />
-        <AddStockButton onAddStock={addStock} />
+       <StockCode symbol={symbol} setSymbol={memoizedSetSymbol} />
+       <StockQuantity quantity={quantity} setQuantity={memoizedSetQuantity} />
+       <StockBuyPrice purchasePrice={purchasePrice} setPurchasePrice={memoizedSetPurchasePrice} />
+       <AddStockButton onAddStock={addStock} />
       </div>
       {isLoading && <p className="loading-text">Loading...</p>}
     </div>
