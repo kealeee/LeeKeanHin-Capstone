@@ -51,7 +51,11 @@ function StockBuyPrice({purchasePrice, setPurchasePrice}){
 
 function AddStockButton({onAddStock}){
   console.log('AddStockButton rendered');
-  return <button className='add-stock-btn' onClick={onAddStock}>Add Stock</button>;
+  return (
+    <button className="add-stock-btn" onClick={onAddStock}>
+      <i className="fas fa-plus"></i> Add Stock
+    </button>
+  );
 }
 
 function StockList({ stockList }) {
