@@ -1,8 +1,12 @@
 
-import { useEffect, useState, useCallback} from 'react';
+import { useEffect, useState, useCallback, createContext, useContext} from 'react';
 import './App.css'
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
+
+
+
+const StockContext = createContext();
 
 function StockFormTitle() {
   return (
@@ -55,7 +59,8 @@ function AddStockButton({onAddStock}){
     <i className="fas fa-plus"></i>Add Stock</button>;
 }
 
-function StockList({ stockList }) {
+function StockList() {
+  const {stockList} = useContext(StockContext);
   return (
     <>
       <h2 className="stock-list-title">Stock List 📊</h2>
@@ -92,7 +97,8 @@ function addStock() {
   setPurchasePrice("");
 }
 
-function StockFormSection({ stockList, setStockList }) {
+function StockFormSection() {
+  const {stockList, setStockList} = useContext(StockContext);
   const [symbol, setSymbol] = useState("");
   const [quantity, setQuantity] = useState("");
   const [purchasePrice, setPurchasePrice] = useState("");
@@ -179,10 +185,12 @@ function App() {
   const [stockList, setStockList] = useState([]);
 
   return (
-    <div>
-      <StockFormSection stockList={stockList} setStockList={setStockList} />
-      <StockList stockList={stockList} />
-    </div>
+    <StockContext.Provider value={{stockList, setStockList}}>
+      <div>
+        <StockFormSection />
+        <StockList />
+      </div>
+    </StockContext.Provider>
   );
 }
 
